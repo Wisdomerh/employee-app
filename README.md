@@ -3,7 +3,7 @@
 This app was built using kotlin in the intelliJ platform.
 
 ## Description
-
+ 
 We were given the challenge of developing a straightforward Kotlin application that 
 computed and printed an employee's pay and payslip as part of our software development tools.
 
