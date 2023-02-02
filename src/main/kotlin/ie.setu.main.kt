@@ -4,8 +4,9 @@ import kotlin.math.round
 var employee =  Employee("Joe", "Soap", 'm',
     6143, 67543.21, 38.5, 5.2,
     1450.50, 54.33)
-fun main(args: Array<String>){
 
+fun main(args: Array<String>){
+    add()
     var input : Int
 
     do {
@@ -23,6 +24,28 @@ fun main(args: Array<String>){
         }
         println()
     } while (input != -1)
+}
+
+fun add(){
+    print("Enter first name: ")
+    val firstName = readLine().toString()
+    print("Enter surname: ")
+    val surname = readLine().toString()
+    print("Enter gender (m/f): ")
+    val gender = readLine()!!.toCharArray()[0]
+    print("Enter employee ID: ")
+    val employeeID = readLine()!!.toInt()
+    print("Enter gross salary: ")
+    val grossSalary = readLine()!!.toDouble()
+    print("Enter PAYE %: ")
+    val payePercentage = readLine()!!.toDouble()
+    print("Enter PRSI %: ")
+    val prsiPercentage = readLine()!!.toDouble()
+    print("Enter Annual Bonus: ")
+    val annualBonus= readLine()!!.toDouble()
+    print("Enter Cycle to Work Deduction: ")
+    val cycleToWorkMonthlyDeduction= readLine()!!.toDouble()
+    employee = Employee(firstName, surname, gender, employeeID, grossSalary, payePercentage, prsiPercentage, annualBonus, cycleToWorkMonthlyDeduction)
 }
 
 fun menu() : Int {
@@ -57,7 +80,7 @@ fun getNetMonthlyPay() = roundTwoDecimals(roundTwoDecimals(getGrossMonthlyPay() 
 fun getPayslip() =
     """
         ______________________________________________________________________
-         Monthly Payslip:             ${getFullName()}, ID: $employee.employeeID                  
+         Monthly Payslip:             ${getFullName()}, ID: ${employee.employeeID}                  
         ______________________________________________________________________    
               PAYMENT DETAILS (gross pay: ${getGrossMonthlyPay()})                                                                    
         ______________________________________________________________________
@@ -68,7 +91,7 @@ fun getPayslip() =
         ______________________________________________________________________
                    PAYE: ${getMonthlyPAYE()}                
                    PRSI: ${getMonthlyPRSI()}  
-                   Cycle To Work: $employee.cycleToWorkMonthlyDeduction         
+                   Cycle To Work: ${employee.cycleToWorkMonthlyDeduction}        
         ______________________________________________________________________
              NET PAY: ${getNetMonthlyPay()} 
         ______________________________________________________________________"""
