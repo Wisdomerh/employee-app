@@ -19,6 +19,10 @@ class EmployeeAPI {
     fun findOne(id: Int): Employee? {
         return employees.find { p -> p.employeeID == id }
     }
+    fun delete(employee: Employee){
+        employee.employeeID = getId()
+        employees.remove(employee)
+    }
 
     fun create(employee: Employee) {
         employee.employeeID = getId()
@@ -26,3 +30,6 @@ class EmployeeAPI {
     }
 
 }
+
+
+

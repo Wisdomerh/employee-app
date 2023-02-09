@@ -3,6 +3,8 @@ package ie.setu
 import ie.setu.controllers.EmployeeAPI
 import ie.setu.models.Employee
 
+
+
 import kotlin.math.round
 
 
@@ -21,6 +23,7 @@ fun menu() : Int {
          |   2. List All Employees
          |   3. Search Employees 
          |   4. Print Payslip for Employee
+         |   5. Remove Employee by ID
          |  -1. Exit
          |       
          |Enter Option : """.trimMargin())
@@ -29,7 +32,7 @@ fun menu() : Int {
 
 fun start() {
     var input: Int
-
+    dummyData()
     do {
         input = menu()
         when (input) {
@@ -37,7 +40,7 @@ fun start() {
             2 -> list()
             3 -> search()
             4 -> paySlip()
-            -99 -> dummyData()
+            5 -> delete()
             -1 -> println("Exiting App")
             else -> println("Invalid Option")
         }
@@ -71,6 +74,7 @@ fun list(){
         .forEach{ println(it) }
 }
 
+
 fun search() {
     val employee = getEmployeeById()
     if (employee == null)
@@ -85,22 +89,31 @@ fun paySlip(){
         println(employee.getPayslip())
 }
 
+fun delete(){
+    val employee = getEmployeeById()
+    if (employee == null)
+        println("No employee found")
+    else
+    employees.delete(employee)
+    println("Employee Has been removed from the system")
+}
+
 internal fun getEmployeeById(): Employee? {
-    print("Enter the employee id to search by: ")
+    print("Please Enter the Employee ID: ")
     val employeeID = readLine()!!.toInt()
     return employees.findOne(employeeID)
 }
 
 internal fun dummyData() {
     employees.create(Employee("Joe", "Soap", 'm', 0, 35655.43, 31.0, 7.5, 2000.0, 25.6))
-    employees.create(Employee("Joan", "Murphy", 'f', 0, 54255.13, 32.5, 7.0, 1500.0, 55.3))
-    employees.create(Employee("Mary", "Quinn", 'f', 0, 75685.41, 40.0, 8.5, 4500.0, 0.0))
+    employees.create(Employee("Joan", "Murphy", 'f', 1, 54255.13, 32.5, 7.0, 1500.0, 55.3))
+    employees.create(Employee("Mary", "Quinn", 'f', 2, 75685.41, 40.0, 8.5, 4500.0, 0.0))
 }
 
-//https://discuss.kotlinlang.org/t/how-do-you-round-a-number-to-n-decimal-places/8843
-//There are several options...try each of them out
+
 fun roundTwoDecimals(number: Double) = round(number * 100) / 100
-//fun roundTwoDecimals(number: Double) = "%.2f".format(number).toDouble()
+
+
 
 
 
