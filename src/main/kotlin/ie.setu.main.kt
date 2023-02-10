@@ -1,6 +1,8 @@
 package ie.setu
 
 import ie.setu.controllers.EmployeeAPI
+import ie.setu.controllers.getId
+import ie.setu.controllers.lastId
 import ie.setu.models.Employee
 
 
@@ -23,7 +25,8 @@ fun menu() : Int {
          |   2. List All Employees
          |   3. Search Employees 
          |   4. Print Payslip for Employee
-         |   5. Remove Employee by ID
+         |   5. Update Employee details
+         |   6. Remove Employee by ID
          |  -1. Exit
          |       
          |Enter Option : """.trimMargin())
@@ -40,7 +43,8 @@ fun start() {
             2 -> list()
             3 -> search()
             4 -> paySlip()
-            5 -> delete()
+            5 -> update()
+            6 -> delete()
             -1 -> println("Exiting App")
             else -> println("Invalid Option")
         }
@@ -94,8 +98,35 @@ fun delete(){
     if (employee == null)
         println("No employee found")
     else
-    employees.delete(employee)
-    println("Employee Has been removed from the system")
+        employees.delete(employee)
+    println("Employee has been removed from the system")
+
+}
+
+fun update(){
+
+    val employee = getEmployeeById()
+    if (employee != null)
+        print("Update first name: " + (employee?.firstName)+ " : ")
+    val firstName = readLine().toString()
+    print("Update surname: " + (employee?.surname)+ " : ")
+    val surname = readLine().toString()
+    print("Update gender (m/f): " + (employee?.gender)+ " : " )
+    val gender = readLine()!!.toCharArray()[0]
+    print("Update gross salary: " + (employee?.grossSalary)+ " : ")
+    val grossSalary = readLine()!!.toDouble()
+    print("Update PAYE %: " + (employee?.payePercentage)+ " : ")
+    val payePercentage = readLine()!!.toDouble()
+    print("Update PRSI %: " + (employee?.prsiPercentage)+ " : ")
+    val prsiPercentage = readLine()!!.toDouble()
+    print("Update Annual Bonus: " + employee?.annualBonus + " : ")
+    val annualBonus= readLine()!!.toDouble()
+    print("Update Cycle to Work Deduction: " + (employee?.cycleToWorkMonthlyDeduction)+ " : ")
+    val cycleToWorkMonthlyDeduction= readLine()!!.toDouble()
+    if (employee != null) {
+        employees.update(Employee(firstName, surname, gender, employee.employeeID, grossSalary, payePercentage, prsiPercentage, annualBonus, cycleToWorkMonthlyDeduction))
+    }
+
 }
 
 internal fun getEmployeeById(): Employee? {

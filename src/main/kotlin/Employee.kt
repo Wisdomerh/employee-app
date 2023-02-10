@@ -1,6 +1,7 @@
 package ie.setu.models
 
 import ie.setu.roundTwoDecimals
+import java.util.function.UnaryOperator
 
 class Employee(var firstName: String, var surname: String, var gender: Char, var employeeID: Int,
                var grossSalary: Double, var payePercentage: Double, var prsiPercentage: Double,
