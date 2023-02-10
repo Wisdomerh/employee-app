@@ -1,8 +1,6 @@
 package ie.setu
 
 import ie.setu.controllers.EmployeeAPI
-import ie.setu.controllers.getId
-import ie.setu.controllers.lastId
 import ie.setu.models.Employee
 
 
@@ -25,8 +23,10 @@ fun menu() : Int {
          |   2. List All Employees
          |   3. Search Employees 
          |   4. Print Payslip for Employee
-         |   5. Update Employee details
-         |   6. Remove Employee by ID
+         |   5. Filter Employees by salary
+         |   6. Filter Employees by Gender
+         |   7. Update Employee details
+         |   8. Remove Employee by ID
          |  -1. Exit
          |       
          |Enter Option : """.trimMargin())
@@ -43,8 +43,10 @@ fun start() {
             2 -> list()
             3 -> search()
             4 -> paySlip()
-            5 -> update()
-            6 -> delete()
+            5 -> filterEmployeeByPay()
+            6 -> filterEmployeeByGender()
+            7 -> update()
+            8 -> delete()
             -1 -> println("Exiting App")
             else -> println("Invalid Option")
         }
@@ -97,10 +99,8 @@ fun delete(){
     val employee = getEmployeeById()
     if (employee == null)
         println("No employee found")
-    else
+    else if (employee != null)
         employees.delete(employee)
-    println("Employee has been removed from the system")
-
 }
 
 fun update(){
@@ -133,6 +133,13 @@ internal fun getEmployeeById(): Employee? {
     print("Please Enter the Employee ID: ")
     val employeeID = readLine()!!.toInt()
     return employees.findOne(employeeID)
+}
+fun filterEmployeeByPay() {
+    employees.filterBySalary()
+}
+
+fun filterEmployeeByGender(){
+    employees.filterByGender()
 }
 
 internal fun dummyData() {

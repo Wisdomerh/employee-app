@@ -8,7 +8,7 @@ class Employee(var firstName: String, var surname: String, var gender: Char, var
                var annualBonus: Double, var cycleToWorkMonthlyDeduction: Double) {
 
     fun getFullName() = when (gender) {
-        'm', 'M' -> "Mr. ${firstName} $surname}"
+        'm', 'M' -> "Mr. ${firstName} ${surname}"
         'f', 'F' -> "Ms.  ${firstName} ${surname}"
         else -> "${firstName} ${surname}"
     }
@@ -24,25 +24,37 @@ class Employee(var firstName: String, var surname: String, var gender: Char, var
 
     fun getPayslip() =
         """
-        ______________________________________________________________________
-         Monthly Payslip:             ${getFullName()}, ID: ${employeeID}                 
-        ______________________________________________________________________    
-              PAYMENT DETAILS (gross pay: ${getGrossMonthlyPay()})                                                                    
-        ______________________________________________________________________
-                   Salary: ${getMonthlySalary()}
-                   Bonus:  ${roundTwoDecimals(annualBonus / 12)}            
-        ______________________________________________________________________
-              DEDUCTION DETAILS (total Deductions: ${getTotalMonthlyDeductions()})      
-        ______________________________________________________________________
-                   PAYE: ${getMonthlyPAYE()}                
-                   PRSI: ${getMonthlyPRSI()}  
-                   Cycle To Work: ${cycleToWorkMonthlyDeduction}         
-        ______________________________________________________________________
-             NET PAY: ${getNetMonthlyPay()} 
-        ______________________________________________________________________"""
+        __________________________________________________________________________
+         Monthly Payslip:               ${getFullName()}            ID: ${employeeID}                 
+        __________________________________________________________________________    
+                                      PAYMENT DETAILS:
+                                     Gross Pay: ${getGrossMonthlyPay()}                                                                   
+        __________________________________________________________________________
+                                      Salary: ${getMonthlySalary()}
+                                       Bonus:  ${roundTwoDecimals(annualBonus / 12)}            
+        __________________________________________________________________________
+                                     DEDUCTION DETAILS:
+                                   Total Deductions: ${getTotalMonthlyDeductions()}     
+        __________________________________________________________________________
+                                       PAYE: ${getMonthlyPAYE()}                
+                                       PRSI: ${getMonthlyPRSI()}  
+                                    Cycle To Work: ${cycleToWorkMonthlyDeduction}         
+        __________________________________________________________________________
+                                     NET PAY: ${getNetMonthlyPay()} 
+        __________________________________________________________________________"""
 
     override fun toString(): String {
-        return "Employee(firstName='$firstName', surname='$surname', gender=$gender, employeeID=$employeeID, grossSalary=$grossSalary, payePercentage=$payePercentage, prsiPercentage=$prsiPercentage, annualBonus=$annualBonus, cycleToWorkMonthlyDeduction=$cycleToWorkMonthlyDeduction)"
+        return """
+             Employee
+             ______________________________________________________________
+                |   Name: '${getFullName()}'               ID: $employeeID
+                |   Gender: $gender                             
+                |   Gross Salary: $grossSalary
+                |   Paye Percentage: $payePercentage           
+                |   Prsi Percentage: $prsiPercentage
+                |   Annual Bonus: $annualBonus                              
+                |   Cycle To Work Monthly Deduction: $cycleToWorkMonthlyDeduction                     
+             ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾  """
     }
 
 
