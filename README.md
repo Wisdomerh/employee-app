@@ -1,6 +1,7 @@
 ## Employee App
 
-Development Language
+https://www.jetbrains.com/idea/
+https://kotlinlang.org/
 
 This app was built using kotlin in the intelliJ platform.
 
