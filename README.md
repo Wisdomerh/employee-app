@@ -1,5 +1,7 @@
 ## Employee App
 
+Development Language
+
 This app was built using kotlin in the intelliJ platform.
 
 ## Description
@@ -11,7 +13,7 @@ computed and printed an employee's pay and payslip as part of our software devel
 
 ### Dependencies
 
-* None - vanilla kotlin.
+* kotlin-logging (2.1.23)
 
 ### Installing
 
@@ -54,17 +56,12 @@ Wisdom Erhimwionsobo
 [@Wiz2909](https://github.com/Wisdomerh)
 
 ## Version History
-
 * 0.4
-  * Various bug fixes and optimizations
-  * Added better menu system
-  * See [commit change]() or See [release history]()
-
+  * Add menu system functions including, filtering, delete and update 
 * 0.3
-  * Various bug fixes and optimizations
-  * Added better menu system
-  * See [commit change]() or See [release history]()
-
+  * Create an Arraylist for Employees
+  * Logging Capability using kotlin-logging (2.1.23)
+  * Changed menu to allow add, list and search employee and printing payslips
 * 0.2
   * Various bug fixes and optimizations
   * Added better menu system
