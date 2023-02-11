@@ -1,31 +1,30 @@
 package ie.setu.models
 
 import ie.setu.roundTwoDecimals
-import java.util.function.UnaryOperator
 
 class Employee(var firstName: String, var surname: String, var gender: Char, var employeeID: Int,
                var grossSalary: Double, var payePercentage: Double, var prsiPercentage: Double,
                var annualBonus: Double, var cycleToWorkMonthlyDeduction: Double) {
 
-    fun getFullName() = when (gender) {
-        'm', 'M' -> "Mr. ${firstName} ${surname}"
-        'f', 'F' -> "Ms.  ${firstName} ${surname}"
-        else -> "${firstName} ${surname}"
+    private fun getFullName() = when (gender) {
+        'm', 'M' -> "Mr. $firstName $surname"
+        'f', 'F' -> "Ms.  $firstName $surname"
+        else -> "$firstName $surname"
     }
 
-    fun getMonthlySalary() = roundTwoDecimals(grossSalary / 12)
-    fun getMonthlyPRSI() = roundTwoDecimals(getMonthlySalary() * (prsiPercentage / 100))
-    fun getMonthlyPAYE() = roundTwoDecimals(getMonthlySalary() * (payePercentage / 100))
-    fun getGrossMonthlyPay() = roundTwoDecimals(getMonthlySalary() + (annualBonus / 12))
-    fun getTotalMonthlyDeductions() =
+    private fun getMonthlySalary() = roundTwoDecimals(grossSalary / 12)
+    private fun getMonthlyPRSI() = roundTwoDecimals(getMonthlySalary() * (prsiPercentage / 100))
+    private fun getMonthlyPAYE() = roundTwoDecimals(getMonthlySalary() * (payePercentage / 100))
+    private fun getGrossMonthlyPay() = roundTwoDecimals(getMonthlySalary() + (annualBonus / 12))
+    private fun getTotalMonthlyDeductions() =
         roundTwoDecimals((getMonthlyPRSI() + getMonthlyPAYE() + cycleToWorkMonthlyDeduction))
 
-    fun getNetMonthlyPay() = roundTwoDecimals(roundTwoDecimals(getGrossMonthlyPay() - getTotalMonthlyDeductions()))
+    private fun getNetMonthlyPay() = roundTwoDecimals(roundTwoDecimals(getGrossMonthlyPay() - getTotalMonthlyDeductions()))
 
     fun getPayslip() =
         """
         __________________________________________________________________________
-         Monthly Payslip:               ${getFullName()}            ID: ${employeeID}                 
+         Monthly Payslip:               ${getFullName()}            ID: $employeeID                 
         __________________________________________________________________________    
                                       PAYMENT DETAILS:
                                      Gross Pay: ${getGrossMonthlyPay()}                                                                   
@@ -38,7 +37,7 @@ class Employee(var firstName: String, var surname: String, var gender: Char, var
         __________________________________________________________________________
                                        PAYE: ${getMonthlyPAYE()}                
                                        PRSI: ${getMonthlyPRSI()}  
-                                    Cycle To Work: ${cycleToWorkMonthlyDeduction}         
+                                    Cycle To Work: $cycleToWorkMonthlyDeduction         
         __________________________________________________________________________
                                      NET PAY: ${getNetMonthlyPay()} 
         __________________________________________________________________________"""

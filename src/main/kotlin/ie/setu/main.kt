@@ -1,5 +1,4 @@
 package ie.setu
-
 import ie.setu.controllers.EmployeeAPI
 import ie.setu.models.Employee
 import mu.KotlinLogging
@@ -9,7 +8,7 @@ var employees = EmployeeAPI()
 val logger = KotlinLogging.logger {}
 
 
-fun main(args: Array<String>) {
+fun main() {
     logger.info { "Launching Employee App" }
     logger.info { "Menu Loading ███████▒▒▒ 70%" }
     logger.info { "Menu Has Loaded" }
@@ -33,7 +32,7 @@ fun menu(): Int {
          |       
          |Enter Option : """.trimMargin()
     )
-    return readLine()!!.toInt()
+    return readln().toInt()
 }
 
 fun start() {
@@ -59,21 +58,21 @@ fun start() {
 
 fun add() {
     print("Enter first name: ")
-    val firstName = readLine().toString()
+    val firstName = readlnOrNull().toString()
     print("Enter surname: ")
-    val surname = readLine().toString()
+    val surname = readlnOrNull().toString()
     print("Enter gender (m/f): ")
-    val gender = readLine()!!.toCharArray()[0]
+    val gender = readln().toCharArray()[0]
     print("Enter gross salary: ")
-    val grossSalary = readLine()!!.toDouble()
+    val grossSalary = readln().toDouble()
     print("Enter PAYE %: ")
-    val payePercentage = readLine()!!.toDouble()
+    val payePercentage = readln().toDouble()
     print("Enter PRSI %: ")
-    val prsiPercentage = readLine()!!.toDouble()
+    val prsiPercentage = readln().toDouble()
     print("Enter Annual Bonus: ")
-    val annualBonus = readLine()!!.toDouble()
+    val annualBonus = readln().toDouble()
     print("Enter Cycle to Work Deduction: ")
-    val cycleToWorkMonthlyDeduction = readLine()!!.toDouble()
+    val cycleToWorkMonthlyDeduction = readln().toDouble()
 
     employees.create(
         Employee(
@@ -114,30 +113,29 @@ fun delete() {
     val employee = getEmployeeById()
     if (employee == null)
         println("No employee found")
-    else if (employee != null)
-        employees.delete(employee)
+    else employees.delete(employee)
 }
 
 fun update() {
 
     val employee = getEmployeeById()
     if (employee != null)
-        print("Update first name: " + (employee?.firstName) + " : ")
-    val firstName = readLine().toString()
+        print("Update first name: " + (employee.firstName) + " : ")
+    val firstName = readlnOrNull().toString()
     print("Update surname: " + (employee?.surname) + " : ")
-    val surname = readLine().toString()
+    val surname = readlnOrNull().toString()
     print("Update gender (m/f): " + (employee?.gender) + " : ")
-    val gender = readLine()!!.toCharArray()[0]
+    val gender = readln().toCharArray()[0]
     print("Update gross salary: " + (employee?.grossSalary) + " : ")
-    val grossSalary = readLine()!!.toDouble()
+    val grossSalary = readln().toDouble()
     print("Update PAYE %: " + (employee?.payePercentage) + " : ")
-    val payePercentage = readLine()!!.toDouble()
+    val payePercentage = readln().toDouble()
     print("Update PRSI %: " + (employee?.prsiPercentage) + " : ")
-    val prsiPercentage = readLine()!!.toDouble()
+    val prsiPercentage = readln().toDouble()
     print("Update Annual Bonus: " + employee?.annualBonus + " : ")
-    val annualBonus = readLine()!!.toDouble()
+    val annualBonus = readln().toDouble()
     print("Update Cycle to Work Deduction: " + (employee?.cycleToWorkMonthlyDeduction) + " : ")
-    val cycleToWorkMonthlyDeduction = readLine()!!.toDouble()
+    val cycleToWorkMonthlyDeduction = readln().toDouble()
     if (employee != null) {
         employees.update(
             Employee(

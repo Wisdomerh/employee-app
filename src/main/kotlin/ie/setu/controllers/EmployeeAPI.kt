@@ -27,7 +27,7 @@ class EmployeeAPI {
     fun delete(employee: Employee){
         println(employee)
         print("Do you want to remove this Employee (y/n) : " )
-        val yesOrNo = readLine()!!.toCharArray()[0]
+        val yesOrNo = readln().toCharArray()[0]
         if (yesOrNo== 'n')
             println("You Have Cancelled the Request to Remove an Employee" )
         else if (yesOrNo== 'y') {
@@ -37,7 +37,7 @@ class EmployeeAPI {
     }
 
     fun update(employee: Employee){
-        employees.set(employee.employeeID, employee)
+        employees[employee.employeeID] = employee
     }
 
     fun create(employee: Employee) {
@@ -47,15 +47,16 @@ class EmployeeAPI {
 
     fun filterBySalary() {
         print("Please Enter the First Salary you want to filter by: ")
-        val firstSalary = readLine()!!.toInt()
+        val firstSalary = readln().toInt()
         print("Please Enter the Second salary you want to filter by: ")
-        val secondSalary = readLine()!!.toInt()
+        val secondSalary = readln().toInt()
         val employeeSalary = employees.filter { it.grossSalary > firstSalary && it.grossSalary < secondSalary }
         print(employeeSalary)
+
     }
 fun filterByGender(){
     print("Enter the gender you want to filter by (m/f): " )
-    val gender = readLine()!!.toCharArray()[0]
+    val gender = readln().toCharArray()[0]
     val employeeGender = employees.filter { it.gender == gender }
     print(employeeGender)
 }
