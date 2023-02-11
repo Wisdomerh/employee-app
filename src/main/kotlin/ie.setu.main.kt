@@ -2,22 +2,21 @@ package ie.setu
 
 import ie.setu.controllers.EmployeeAPI
 import ie.setu.models.Employee
-
-
-
+import mu.KotlinLogging
 import kotlin.math.round
 
-
 var employees = EmployeeAPI()
+val logger = KotlinLogging.logger {}
 
 
-fun main(args: Array<String>){
-
+fun main(args: Array<String>) {
+    logger.info { "Launching Employee App" }
     start()
 }
 
-fun menu() : Int {
-    print(""" 
+fun menu(): Int {
+    print(
+        """ 
          |Employee Menu
          |   1. Add Employee
          |   2. List All Employees
@@ -29,7 +28,8 @@ fun menu() : Int {
          |   8. Remove Employee by ID
          |  -1. Exit
          |       
-         |Enter Option : """.trimMargin())
+         |Enter Option : """.trimMargin()
+    )
     return readLine()!!.toInt()
 }
 
@@ -54,7 +54,7 @@ fun start() {
     } while (input != -1)
 }
 
-fun add(){
+fun add() {
     print("Enter first name: ")
     val firstName = readLine().toString()
     print("Enter surname: ")
@@ -68,16 +68,28 @@ fun add(){
     print("Enter PRSI %: ")
     val prsiPercentage = readLine()!!.toDouble()
     print("Enter Annual Bonus: ")
-    val annualBonus= readLine()!!.toDouble()
+    val annualBonus = readLine()!!.toDouble()
     print("Enter Cycle to Work Deduction: ")
-    val cycleToWorkMonthlyDeduction= readLine()!!.toDouble()
+    val cycleToWorkMonthlyDeduction = readLine()!!.toDouble()
 
-    employees.create(Employee(firstName, surname, gender, 0, grossSalary, payePercentage, prsiPercentage, annualBonus, cycleToWorkMonthlyDeduction))
+    employees.create(
+        Employee(
+            firstName,
+            surname,
+            gender,
+            0,
+            grossSalary,
+            payePercentage,
+            prsiPercentage,
+            annualBonus,
+            cycleToWorkMonthlyDeduction
+        )
+    )
 }
 
-fun list(){
+fun list() {
     employees.findAll()
-        .forEach{ println(it) }
+        .forEach { println(it) }
 }
 
 
@@ -89,13 +101,13 @@ fun search() {
         println(employee)
 }
 
-fun paySlip(){
+fun paySlip() {
     val employee = getEmployeeById()
     if (employee != null)
         println(employee.getPayslip())
 }
 
-fun delete(){
+fun delete() {
     val employee = getEmployeeById()
     if (employee == null)
         println("No employee found")
@@ -103,28 +115,40 @@ fun delete(){
         employees.delete(employee)
 }
 
-fun update(){
+fun update() {
 
     val employee = getEmployeeById()
     if (employee != null)
-        print("Update first name: " + (employee?.firstName)+ " : ")
+        print("Update first name: " + (employee?.firstName) + " : ")
     val firstName = readLine().toString()
-    print("Update surname: " + (employee?.surname)+ " : ")
+    print("Update surname: " + (employee?.surname) + " : ")
     val surname = readLine().toString()
-    print("Update gender (m/f): " + (employee?.gender)+ " : " )
+    print("Update gender (m/f): " + (employee?.gender) + " : ")
     val gender = readLine()!!.toCharArray()[0]
-    print("Update gross salary: " + (employee?.grossSalary)+ " : ")
+    print("Update gross salary: " + (employee?.grossSalary) + " : ")
     val grossSalary = readLine()!!.toDouble()
-    print("Update PAYE %: " + (employee?.payePercentage)+ " : ")
+    print("Update PAYE %: " + (employee?.payePercentage) + " : ")
     val payePercentage = readLine()!!.toDouble()
-    print("Update PRSI %: " + (employee?.prsiPercentage)+ " : ")
+    print("Update PRSI %: " + (employee?.prsiPercentage) + " : ")
     val prsiPercentage = readLine()!!.toDouble()
     print("Update Annual Bonus: " + employee?.annualBonus + " : ")
-    val annualBonus= readLine()!!.toDouble()
-    print("Update Cycle to Work Deduction: " + (employee?.cycleToWorkMonthlyDeduction)+ " : ")
-    val cycleToWorkMonthlyDeduction= readLine()!!.toDouble()
+    val annualBonus = readLine()!!.toDouble()
+    print("Update Cycle to Work Deduction: " + (employee?.cycleToWorkMonthlyDeduction) + " : ")
+    val cycleToWorkMonthlyDeduction = readLine()!!.toDouble()
     if (employee != null) {
-        employees.update(Employee(firstName, surname, gender, employee.employeeID, grossSalary, payePercentage, prsiPercentage, annualBonus, cycleToWorkMonthlyDeduction))
+        employees.update(
+            Employee(
+                firstName,
+                surname,
+                gender,
+                employee.employeeID,
+                grossSalary,
+                payePercentage,
+                prsiPercentage,
+                annualBonus,
+                cycleToWorkMonthlyDeduction
+            )
+        )
     }
 
 }
@@ -134,11 +158,12 @@ internal fun getEmployeeById(): Employee? {
     val employeeID = readLine()!!.toInt()
     return employees.findOne(employeeID)
 }
+
 fun filterEmployeeByPay() {
     employees.filterBySalary()
 }
 
-fun filterEmployeeByGender(){
+fun filterEmployeeByGender() {
     employees.filterByGender()
 }
 
