@@ -25,16 +25,18 @@ computed and printed an employee's pay and payslip as part of our software devel
 
 ## The application's primary menu.
 ```
-Menu for employee Mr. Joe Soap
-           1. Monthly Salary
-           2. Monthly PRSI
-           3. Monthly PAYE
-           4. Monthly Gross Pay
-           5. Monthly Total Deductions
-           6. Monthly Net Pay
-           7. Full Payslip
-          -1. Exit
-         Enter Option : -1
+Employee Menu
+   1. Add Employee
+   2. List All Employees
+   3. Search Employees 
+   4. Print Payslip for Employee
+   5. Filter Employees by salary
+   6. Filter Employees by Gender
+   7. Update Employee details
+   8. Remove Employee by ID
+  -1. Exit
+       
+Enter Option : 
 ```
 
 
@@ -52,6 +54,16 @@ Wisdom Erhimwionsobo
 [@Wiz2909](https://github.com/Wisdomerh)
 
 ## Version History
+
+* 0.4
+  * Various bug fixes and optimizations
+  * Added better menu system
+  * See [commit change]() or See [release history]()
+
+* 0.3
+  * Various bug fixes and optimizations
+  * Added better menu system
+  * See [commit change]() or See [release history]()
 
 * 0.2
   * Various bug fixes and optimizations
