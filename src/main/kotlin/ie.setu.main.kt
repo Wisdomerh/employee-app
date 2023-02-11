@@ -11,6 +11,9 @@ val logger = KotlinLogging.logger {}
 
 fun main(args: Array<String>) {
     logger.info { "Launching Employee App" }
+    logger.info { "Menu Loading ███████▒▒▒ 70%" }
+    logger.info { "Menu Has Loaded" }
+    logger.info { "Please Select An Option From The Menu" }
     start()
 }
 
